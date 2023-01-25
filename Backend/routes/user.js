@@ -4,6 +4,8 @@ var jwt = require ('jsonwebtoken');
 var nodemailer = require ('nodemailer');
 var dotenv = require ('dotenv');
 dotenv.config();
+var auth = require ('../services/authentication')
+var checkRole = require('../services/checkRole')
 
 
 // SignUp 
@@ -102,7 +104,7 @@ router.post('/forgotpassword',(req,res)=>{
 })
 
 //get all user role
-router.get('/getuser',(req,res)=>{
+router.get('/getuser', auth.authenticateToken,(req,res)=>{
     let query = "select id,name,contactNumber,email,status from user where role='user'";
     connection.query(query,(err,result)=>{
         if(!err){
