@@ -18,7 +18,7 @@ router.post('/signup',(req,res)=>{
                 })
             }
             else{
-                return res.json({message : "Email Already exist"})
+                return res.json({message : "Email Already exist"});
             }
         }else{
             return res.json(err)
